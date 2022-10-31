@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   find_values.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imoore <imoore@student.42.fr>              +#+  +:+       +#+        */
+/*   By: isobelmoore <isobelmoore@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 12:48:32 by isobelmoore       #+#    #+#             */
-/*   Updated: 2022/10/21 13:11:18 by imoore           ###   ########.fr       */
+/*   Updated: 2022/10/31 23:40:40 by isobelmoore      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//_______________________FINDS VALUES WITHIN STACK__________________________//
 
 #include "../includes/pushswap.h"
 

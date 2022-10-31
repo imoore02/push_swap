@@ -6,7 +6,7 @@
 /*   By: isobelmoore <isobelmoore@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:17:10 by isobelmoore       #+#    #+#             */
-/*   Updated: 2022/10/31 16:16:13 by isobelmoore      ###   ########.fr       */
+/*   Updated: 2022/10/31 22:55:31 by isobelmoore      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ int	sorted(t_concept *info)
 	current = info->a; //(1) puts the head pointer of stack a (t_stack *info->a) into 't_stack *current'; so that it can be used in the below comparisons without actually changing any of the values in the stack;
 	end = info->a->prev; //(2) puts the pointer to the end of the stack (t_stack *info->a->prev (because its circular - see guide note 2)) into t_stack *end; so that it can be used in the below comparisons without actually changing any of the values in the stack;
 	if (!info->a) //(3) if info->a doesn't exist return 0 (dont do anything); (which is what would happen if we didnt create our list properly (the code would ahve broken before this but its just a failsafe));
-		return (0);
-	while (1) //(4) creation of an arbitrary loop - can only be broken with a 'break' call;
+		return (0); //(4) it will return 0 to the function 'push_swap()' (pushswap.c, line 31);
+	while (1) //(5) creation of an arbitrary loop - can only be broken with a 'break' call;
 	{
-		if (current == end) //(5) if the current pointer becomes the end pointer (i.e we have reached the end of the stack (aka the place we started from - because we only want to run through it once completely))
+		if (current == end) //(6) if the current pointer becomes the end pointer (i.e we have reached the end of the stack (aka the place we started from - because we only want to run through it once completely))
 			break ;
-		if (current->num > current->nxt->num) //(6) this checks if the 'int num' (number/value) stored in the current pointer is greater than the 'int num' in the next element in the stack (pointed to be t_stack *current->nxt); if it is greater this is UNSORTED and will return (0) to push_swap() (pushswap.c, line 19) to show that it needs to be sorted;
+		if (current->num > current->nxt->num) //(7) this checks if the 'int num' (number/value) stored in the current pointer is greater than the 'int num' in the next element in the stack (pointed to be t_stack *current->nxt); if it is greater this is UNSORTED and will return (0) to push_swap() (pushswap.c, line 19) to show that it needs to be sorted;
 			return (0);
-		current = current->nxt;
+		current = current->nxt; //(8) this puts the pointer for 't_concept *current->nxt' into the pointer for 't_concept *current' -> therefore effectively moving to the next element in the stack;
 	}
-	return (1);
+	return (1); //(9) if the stack is already in order it will return 1 to the function 'push_swap()' (pushswap.c, line 31);
 }

@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imoore <imoore@student.42.fr>              +#+  +:+       +#+        */
+/*   By: isobelmoore <isobelmoore@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 14:21:08 by isobelmoore       #+#    #+#             */
-/*   Updated: 2022/10/21 13:12:02 by imoore           ###   ########.fr       */
+/*   Updated: 2022/10/28 00:15:01 by isobelmoore      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include "../libft/libft.h"
 
-//--definitions of macros for error codes--//
+/*/--definitions of macros for error codes--/*/
 # define ERROR_FREE "An error arose in whilst freeing :O\n"
 # define ERROR_INPUT_INVALID "Invalid input (do it properly you shmuck): please enter valid integer(s). e.g. 420, 6969696969, +666, -8, 0\n"
 # define ERROR_MALLOC "An error arose during memory allocation :O\n"
@@ -27,15 +28,15 @@
 # define ERROR_STACK "An error arose in creating stack a :0\n"
 # define ERROR_DUPLICATE "Invalid input: duplicate values detected :O\n"
 
-//--doubly circular linked list--//
+/*/--doubly circular linked list--/*/
 typedef struct s_stack {
 	int				num;
 	struct s_stack	*prev;
 	struct s_stack	*nxt;
 }					t_stack;
 
-//--structure to define the overall concept of the program: holds all 
-//necessary information to execute prog--//
+/*/--structure to define the overall concept of the program: holds all 
+necessary information to execute prog--/*/
 typedef struct s_concept {
 	struct s_stack	*a;
 	struct s_stack	*b;

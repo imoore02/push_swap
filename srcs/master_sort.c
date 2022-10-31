@@ -3,41 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   master_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imoore <imoore@student.42.fr>              +#+  +:+       +#+        */
+/*   By: isobelmoore <isobelmoore@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:17:10 by isobelmoore       #+#    #+#             */
-/*   Updated: 2022/10/07 20:59:37 by imoore           ###   ########.fr       */
+/*   Updated: 2022/10/31 16:16:13 by isobelmoore      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
 
-//_________SORTING FUNCTIONS__________//
+//________________________SORTING FUNCTIONS_________________________________//
 
-//--master sort function--//
-//operation: checks the length of stack a and sorts it accordingly--//
+/*/-- checks the length of stack a and sorts it according to its size 
+(whether its small or larger than 5) --/*/
 void	sort_values(t_concept *info)
 {
-	if (info->stack_len <= 5)
-		small_sort(info);
-	if (info->stack_len > 5)
-		quarter_sort(info);
+	if (info->stack_len <= 5) //(1) if the size of the stack (i.e. how many numbers are in the stack) is less than or equal to 5 then it will use the 'small_sort()' fucntion to sort it;
+		small_sort(info); //(2) small_sort.c, line 16;
+	if (info->stack_len > 5) //(3) if the size of the stack is larger than 5 -> it uses the 'quarter_sort()' function to sort it;
+		quarter_sort(info); //(4) quarter_sort.c, line 90;
 }
 
+
+/*/-- checks whether the stack is already sorted (this is used in
+'pushswap()'(pushswap.c, line 19)) --/*/
 int	sorted(t_concept *info)
 {
 	t_stack	*end;
 	t_stack	*current;
 
-	current = info->a;
-	end = info->a->prev;
-	if (!info->a)
+	current = info->a; //(1) puts the head pointer of stack a (t_stack *info->a) into 't_stack *current'; so that it can be used in the below comparisons without actually changing any of the values in the stack;
+	end = info->a->prev; //(2) puts the pointer to the end of the stack (t_stack *info->a->prev (because its circular - see guide note 2)) into t_stack *end; so that it can be used in the below comparisons without actually changing any of the values in the stack;
+	if (!info->a) //(3) if info->a doesn't exist return 0 (dont do anything); (which is what would happen if we didnt create our list properly (the code would ahve broken before this but its just a failsafe));
 		return (0);
-	while (1)
+	while (1) //(4) creation of an arbitrary loop - can only be broken with a 'break' call;
 	{
-		if (current == end)
+		if (current == end) //(5) if the current pointer becomes the end pointer (i.e we have reached the end of the stack (aka the place we started from - because we only want to run through it once completely))
 			break ;
-		if (current->num > current->nxt->num)
+		if (current->num > current->nxt->num) //(6) this checks if the 'int num' (number/value) stored in the current pointer is greater than the 'int num' in the next element in the stack (pointed to be t_stack *current->nxt); if it is greater this is UNSORTED and will return (0) to push_swap() (pushswap.c, line 19) to show that it needs to be sorted;
 			return (0);
 		current = current->nxt;
 	}
